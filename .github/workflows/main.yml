@@ -7,14 +7,21 @@ on:
       - master
   workflow_dispatch:
 
+env:
+  PRODUCT_ID: test:l12
+  PROJECT_OWN: gcp_2026
 jobs:
   checkout:
     runs-on: ubuntu-22.04
     steps:
       - name: checkout branches
-        run: echo "build"
+        run: |
+          echo "this is for testing"
+          echo "project name is ${PRODUCT_ID}"
   verification:
     runs-on: ubuntu-22.04
     steps:
       - name: verify current spaces
-        run: ls -l
+        run: |
+          ls -l
+          echo "name of project owner ${PROJECT_OWN}"
