@@ -1,26 +1,20 @@
-name: My first action
+name: first pipeline
 
 on:
-  push: 
-    branches:
+  push:
+    branches: 
       - main
       - master
-  workflow_dispatch: 
+  workflow_dispatch:
 
 jobs:
-  build:
+  checkout:
     runs-on: ubuntu-22.04
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      - run: "docker build -t colour ."
-  security_scan:
+      - name: checkout branches
+        run: echo "build"
+  verification:
     runs-on: ubuntu-22.04
     steps:
-      - run: "trivy image --scanners vuln --severity HIGH,MEDIUM,CRITICAL -format table | tee color.txt"
-  deploy:
-    runs-on: ubuntu-22.04
-    needs: [build, security_scan]
-    steps:
-      - run: "docker run -d --name test -p 5000:8000 colorb color"
-      
+      - name: verify current spaces
+        run: ls -l
