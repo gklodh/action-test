@@ -14,10 +14,14 @@ jobs:
   checkout:
     runs-on: ubuntu-22.04
     steps:
+      - name: checkout source code
+        uses: actions/checkout@v4
+        
       - name: checkout branches
         run: |
           echo "this is for testing"
           echo "project name is ${PRODUCT_ID}"
+          ls -l
   verification:
     runs-on: ubuntu-22.04
     steps:
